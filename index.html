@@ -6,11 +6,17 @@
     <title>Document</title>
 </head>
 <body>
-    <form>
-        <header id="header">To Do List!</header>
-        <input type="text" id="todoinput">
-        <button id="addtodobtn">Lägg till</button>
-        <ul id="theList"></ul>
+    <h1>To-Do list</h1>
+    <form id="todo">
+        <header id="header">
+            <input type="text" id="todoinput" placeholder="Add to-do">
+            <button id="addtodobtn">Add</button>
+        </header>
+        <br>
+        <div class="container">
+            <ul class="theList" id="completed"></ul>
+            </ul class="theList"><ul> 
+        </div>
     </form>
     <script type="application/javascript" src="main.js"></script>
 </body>
