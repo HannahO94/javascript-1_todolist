@@ -6,16 +6,23 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>To-Do list</h1>
+    <h1>To-Do lista</h1>
     <form id="todo">
         <header id="header">
-            <input type="text" id="todoinput" placeholder="Add to-do">
+            <h2>Lägg till en todo:</h2>
+            <input type="text" id="todoinput" placeholder="Lägg till to-do">
             <button id="addtodobtn">Add</button>
         </header>
+        <div id="filtertodos">
+            <h2>Filtrera på:</h2>
+            <input type="text" id="filter" placeholder="Filtrera">
+        </div>
+        
         <br>
         <div class="container">
-            <ul class="theList" id="completed"></ul>
             </ul class="theList"><ul> 
+            <ul class="theList" id="completed"></ul>
+            
         </div>
     </form>
     <script type="application/javascript" src="main.js"></script>
