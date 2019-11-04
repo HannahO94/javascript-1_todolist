@@ -11,6 +11,12 @@
         <header id="header">
             <h2>Lägg till en todo:</h2>
             <input type="text" id="todoinput" placeholder="Lägg till to-do">
+            <input type="date" class="datum" id="datumet">
+            <select id="category">
+                <option value="Hushållsarbete" selected>Hushållsarbete</option>
+                <option value="Jobb">Jobb</option>
+                <option value="Övrigt">Övrigt</option>
+            </select>
             <button id="addtodobtn">Add</button>
         </header>
         <div id="filtertodos">
@@ -20,7 +26,7 @@
         
         <br>
         <div class="container">
-            </ul class="theList"><ul> 
+            <table class="theList" id="filterlista"></table> 
             <ul class="theList" id="completed"></ul>
             
         </div>

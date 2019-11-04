@@ -1,19 +1,11 @@
-
 const listOfToDos = []
 
 document.querySelector('#addtodobtn').addEventListener('click', function(event){
     event.preventDefault()
     var inputValue = document.querySelector('#todoinput').value
-    var dated = document.querySelector('#datumet').value
-    let category = document.querySelector('#category').value
-    if (inputValue && dated && category){
-         addItemToDo(inputValue, dated, category)    
+    if (inputValue){
+         addItemToDo(inputValue)    
          document.querySelector('#todoinput').value = ''
-         document.querySelector('#datumet').value = ''
-         document.querySelector('#datumet').classList.remove('giveTime')
-    }
-    else {
-        document.querySelector('#datumet').classList.add('giveTime')
     }
     
 })
@@ -24,18 +16,13 @@ function removeItem(event){
     parent.removeChild(item)
 }
 
-
 //adds a new item to the to do list
-function addItemToDo(text, dated, category){
+function addItemToDo(text){
     let list = document.querySelector('.theList')
     let row = document.createElement('tr')
     let item = document.createElement('td')
     item.innerText = text
     listOfToDos.push(item.innerText)
-    let timeitem = document.createElement('td')
-    timeitem.innerText = dated
-    let categoryitem = document.createElement('td')
-    categoryitem.innerText = category
 
     let buttons = document.createElement('td')
     buttons.classList.add('buttons')
@@ -48,48 +35,68 @@ function addItemToDo(text, dated, category){
     // click event for removing button
     remove.addEventListener('click', removeItem)
 
+    /*let complete = document.createElement('button')
+    complete.classList.add('complete')
+    complete.textContent = 'Complete'*/
     let complete = document.createElement('input')
     complete.setAttribute("type", "checkbox")
     let checkboxtd = document.createElement('td')
-    
+
     //click for completing
     complete.addEventListener('click', function(){
         if (this.checked){
             item.classList.add('done')
-            timeitem.classList.add('done')
-            categoryitem.classList.add('done')
-        }
-        else{
-            item.classList.remove('done')
-            timeitem.classList.remove('done')
-            categoryitem.classList.remove('done')
         }
     })
 
-    let td = document.createElement('td')  
-    let cattd = document.createElement('td')
-    cattd.appendChild(categoryitem)
-    td.appendChild(timeitem)
     removebuttontd.appendChild(remove)
     checkboxtd.appendChild(complete)
-    row.appendChild(checkboxtd)
     row.appendChild(item)
-    row.appendChild(buttons)
-    row.appendChild(td)
-    row.appendChild(cattd)
+    row.appendChild(checkboxtd)
     row.appendChild(removebuttontd)
-    list.appendChild(row)
-    //getDate(dated, row)
-    checkIfDatePassed(timeitem)
+    row.appendChild(buttons)
     
+    //list.insertBefore(item, list.childNodes[0])
+
+    list.appendChild(row)
 }
 
 
 const filterField = document.querySelector('#filter')
-filterField.addEventListener('input', filteredListOfToDos)
+filterField.addEventListener('input', myFunction)
+/*filterField.addEventListener('input', function(event){
+    console.log(event.currentTarget.value)
+    const filteredList = listOfToDos.filter(function(todo){
+        //console.log(todo.currentTarget.value)
+        return todo.toLowerCase().includes(event.currentTarget.value.toLowerCase())
+    })
+    filteredListOfToDos(filteredList)
+})*/
 
-//shows a list of filtered to dos 
-function filteredListOfToDos() {
+/*function filteredListOfToDos(filtered){
+    const newToDoList = document.querySelector('#filterlista')
+    newToDoList.innerHTML = ''
+    filtered.forEach(function(todo){
+        const newLi = document.createElement('tr')
+        newLi.textContent = todo
+        newToDoList.appendChild(newLi)
+    })
+}
+filteredListOfToDos(listOfToDos)*/
+
+/*filterField.addEventListener('input', function(event){
+    let list = document.querySelector('.theList')
+    for (let i = 0; i < list.length; i++){
+        if (list[i].includes(event.currentTarget.value.toLowerCase())){
+            continue
+        }else {
+            list[i].style.display = 'none' 
+        }
+    }
+
+})*/
+
+function myFunction() {
     // Declare variables
     var input, filter, table, tr, td, i, txtValue;
     input = document.getElementById('filter');
@@ -99,7 +106,7 @@ function filteredListOfToDos() {
   
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[1];
+      td = tr[i].getElementsByTagName("td")[0];
       txtValue = td.textContent || td.innerText;
       if (txtValue.toUpperCase().indexOf(filter) > -1) {
         tr[i].style.display = "";
@@ -107,13 +114,4 @@ function filteredListOfToDos() {
         tr[i].style.display = "none";
       }
     }
-}
-function checkIfDatePassed(timeitem){
-    const now = new Date()
-    const nowDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
-
-    if (parseInt(timeitem) > nowDate){
-        timeitem.classList.add('timePassed')
-        timeitem.innerText = timeitem + '🕚'
-    }
-}
+  }

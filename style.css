@@ -2,3 +2,10 @@
         text-decoration: line-through;
         color: gray;
     }
+    .giveTime {
+        color: red;
+      }
+      .timePassed {
+          color: red;
+          
+      }
