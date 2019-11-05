@@ -13,15 +13,21 @@
             <input type="text" id="todoinput" placeholder="Lägg till to-do">
             <input type="date" class="datum" id="datumet">
             <select id="category">
-                <option value="Hushållsarbete" selected>Hushållsarbete</option>
-                <option value="Jobb">Jobb</option>
-                <option value="Övrigt">Övrigt</option>
+                <option value="Hushållsarbete" id="household" selected>Hushållsarbete</option>
+                <option value="Jobb" id="job">Jobb</option>
+                <option value="Övrigt" id="other">Övrigt</option>
             </select>
             <button id="addtodobtn">Add</button>
         </header>
         <div id="filtertodos">
             <h2>Filtrera på:</h2>
             <input type="text" id="filter" placeholder="Filtrera">
+        </div>
+        <div id="filtercategory">
+            <input type="radio" value="Alla" id="all" class="radio" name="categorygroup" checked>Alla
+            <input type="radio" value="Hushållsarbete" id="houseradio" class="radio" name="categorygroup">Hushållsarbete
+            <input type="radio" value="Jobb" id="jobradio" class="radio" name="categorygroup">Jobb
+            <input type="radio" value="Övrigt" id="otherradio" class="radio" name="categorygroup">Övrigt
         </div>
         
         <br>

@@ -1,7 +1,6 @@
-
 const listOfToDos = []
 let cattd
-//Puts default value in date input to todays date
+//Puts default value in date input to todays date 
 let field = document.querySelector('#datumet')
 let date = new Date
 field.value = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) +'-' + date.getDate().toString().padStart(2, 0);
@@ -18,7 +17,6 @@ document.querySelector('#addtodobtn').addEventListener('click', function(event){
          document.querySelector('#datumet').value = ''
          document.querySelector('#datumet').classList.remove('giveTime')
          field.value = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) +'-' + date.getDate().toString().padStart(2, 0);
-         
     }
     else {
         document.querySelector('#datumet').classList.add('giveTime')
@@ -73,7 +71,7 @@ function addItemToDo(text, dated, category){
             categoryitem.classList.remove('done')
         }
     })
-    checkIfDatePassed(timeitem)
+
     let td = document.createElement('td')  
     cattd = document.createElement('td')
     cattd.appendChild(categoryitem)
@@ -87,8 +85,8 @@ function addItemToDo(text, dated, category){
     row.appendChild(cattd)
     row.appendChild(removebuttontd)
     list.appendChild(row)
-    
-    
+    //getDate(dated, row)
+    checkIfDatePassed(timeitem)
     
 }
 
@@ -106,44 +104,32 @@ for (var i = 0; i < radiobtns.length; i++) {
         checkcat = this.value
         //console.log(checkcat)
         filterByCategory(checkcat)
-        //filterFunc(filterByCategory, filteredListOfToDos)
 
     });
 }
-
 // function for filtering based on selection of radiobutton 
 function filterByCategory(radiobuttoncategory){
     let tabl = document.querySelector('table')
     let trow = tabl.querySelectorAll('tr')
-    const filterField = document.querySelector('#filter')
     for (i = 0; i < trow.length; i++) {
         tde = trow[i].getElementsByTagName("td")[5];
-        txtCatValue = tde.textContent || tde.innerText;
+        txtValue = tde.textContent || tde.innerText;
         //console.log(txtValue)
         console.log(radiobuttoncategory)
         if(radiobuttoncategory.toUpperCase() === "ALLA"){
             trow[i].style.display = ""
-            filterField.addEventListener('input', filteredListOfToDos)
         }
-        else if (txtCatValue.toUpperCase() === radiobuttoncategory.toUpperCase()) {
+        else if (txtValue.toUpperCase() === radiobuttoncategory.toUpperCase()) {
             trow[i].style.display = ""
-            filterField.addEventListener('input', filteredListOfToDos)
-
-        }else if (txtCatValue.toUpperCase() === radiobuttoncategory[2].toUpperCase()) {
-            trow[i].style.display = ""
-            filterField.addEventListener('input', filteredListOfToDos)
-
-        }else if (txtCatValue.toUpperCase() === radiobuttoncategory[3].toUpperCase()) {
-            trow[i].style.display = ""
-            filterField.addEventListener('input', filteredListOfToDos)
-        }else {
+        } else {
             trow[i].style.display = "none";
-            filterField.addEventListener('input', filteredListOfToDos)
         }
       }
-   
 }
 
+
+const filterField = document.querySelector('#filter')
+filterField.addEventListener('input', filteredListOfToDos)
 
 //shows a list of filtered to dos 
 function filteredListOfToDos() {
@@ -167,26 +153,13 @@ function filteredListOfToDos() {
 }
 
 
-
-//function for filtering both radiobuttons and filtertext input
-/*function filterFunc(){
-    filterByCategory()
-    if(radiobuttoncategory !== 'Alla'){
-
-    }
-}*/
-
-// ckecking if the set date has passed 
 function checkIfDatePassed(timeitem){
     const now = new Date()
-    const nowDate = now.getFullYear().toString() + (now.getMonth() + 1).toString().padStart(2, 0) + now.getDate().toString().padStart(2, 0);
-    let nowtime = timeitem.innerText.toString()
-    let styletime = nowtime
-    nowtime = nowtime.replace('-', '')
-    nowtime = nowtime.replace('-', '')
-    if(parseInt(nowtime) < parseInt(nowDate)){
+    const nowDate = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+
+
+    if (parseInt(timeitem) > nowDate){
         timeitem.classList.add('timePassed')
-        timeitem.textContent = styletime + '🕚'
-        
+        timeitem.innerText = timeitem + '🕚'
     }
 }
