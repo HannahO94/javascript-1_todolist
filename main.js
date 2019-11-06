@@ -55,6 +55,7 @@ function addItemToDo(text, dated, category){
     remove.classList.add('remove')
     remove.textContent = '🗑️'
     let removebuttontd = document.createElement('td')
+    removebuttontd.classList.add('removebuttontd')
 
     // click event for removing button
     remove.addEventListener('click', removeItem)
