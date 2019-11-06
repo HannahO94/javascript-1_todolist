@@ -4,6 +4,7 @@ let cattd
 //Puts default value in date input to todays date
 let field = document.querySelector('#datumet')
 let date = new Date
+let nr = 1
 field.value = date.getFullYear().toString() + '-' + (date.getMonth() + 1).toString().padStart(2, 0) +'-' + date.getDate().toString().padStart(2, 0);
 
 
@@ -39,18 +40,20 @@ function addItemToDo(text, dated, category){
     let row = document.createElement('tr')
     let item = document.createElement('td')
     item.innerText = text
+    item.classList.add('item')
     listOfToDos.push(item.innerText)
     let timeitem = document.createElement('td')
     timeitem.innerText = dated
     let categoryitem = document.createElement('td')
     categoryitem.innerText = category
+    
 
     let buttons = document.createElement('td')
     buttons.classList.add('buttons')
 
     let remove = document.createElement('button')
     remove.classList.add('remove')
-    remove.textContent = 'TA BORT'
+    remove.textContent = '🗑️'
     let removebuttontd = document.createElement('td')
 
     // click event for removing button
@@ -76,6 +79,8 @@ function addItemToDo(text, dated, category){
     checkIfDatePassed(timeitem)
     let td = document.createElement('td')  
     cattd = document.createElement('td')
+    cattd.classList.add('cattd')
+    td.classList.add('timeitem')
     cattd.appendChild(categoryitem)
     td.appendChild(timeitem)
     removebuttontd.appendChild(remove)
@@ -102,11 +107,9 @@ for (var i = 0; i < radiobtns.length; i++) {
         if (this !== prev) {
             prev = this;
         }
-        //console.log(this.value)
         checkcat = this.value
-        //console.log(checkcat)
         filterByCategory(checkcat)
-        //filterFunc(filterByCategory, filteredListOfToDos)
+
 
     });
 }
@@ -115,35 +118,28 @@ for (var i = 0; i < radiobtns.length; i++) {
 function filterByCategory(radiobuttoncategory){
     let tabl = document.querySelector('table')
     let trow = tabl.querySelectorAll('tr')
-    const filterField = document.querySelector('#filter')
     for (i = 0; i < trow.length; i++) {
         tde = trow[i].getElementsByTagName("td")[5];
-        txtCatValue = tde.textContent || tde.innerText;
-        //console.log(txtValue)
-        console.log(radiobuttoncategory)
+        txtValue = tde.textContent || tde.innerText;
+
         if(radiobuttoncategory.toUpperCase() === "ALLA"){
             trow[i].style.display = ""
-            filterField.addEventListener('input', filteredListOfToDos)
+            nr = 1            
         }
-        else if (txtCatValue.toUpperCase() === radiobuttoncategory.toUpperCase()) {
-            trow[i].style.display = ""
-            filterField.addEventListener('input', filteredListOfToDos)
-
-        }else if (txtCatValue.toUpperCase() === radiobuttoncategory[2].toUpperCase()) {
-            trow[i].style.display = ""
-            filterField.addEventListener('input', filteredListOfToDos)
-
-        }else if (txtCatValue.toUpperCase() === radiobuttoncategory[3].toUpperCase()) {
-            trow[i].style.display = ""
-            filterField.addEventListener('input', filteredListOfToDos)
-        }else {
+        else if (txtValue.toUpperCase() === radiobuttoncategory.toUpperCase()) {
+            trow[i].style.display = ""            
+            trow[i].getElementsByTagName("td")[2].innerText = trow[i].getElementsByTagName("td")[1].innerText
+            nr = 2
+        } else {
             trow[i].style.display = "none";
-            filterField.addEventListener('input', filteredListOfToDos)
+            trow[i].getElementsByTagName("td")[2].innerText = ''
         }
       }
-   
 }
 
+
+const filterField = document.querySelector('#filter')
+filterField.addEventListener('input', filteredListOfToDos)
 
 //shows a list of filtered to dos 
 function filteredListOfToDos() {
@@ -156,25 +152,17 @@ function filteredListOfToDos() {
   
     // Loop through all list items, and hide those who don't match the search query
     for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[1];
+      td = tr[i].getElementsByTagName("td")[nr];
       txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+      if (txtValue.toUpperCase().indexOf(filter) > -1 && txtValue !== '') {
         tr[i].style.display = "";
-      } else {
+      } 
+      else {
         tr[i].style.display = "none";
       }
     }
 }
 
-
-
-//function for filtering both radiobuttons and filtertext input
-/*function filterFunc(){
-    filterByCategory()
-    if(radiobuttoncategory !== 'Alla'){
-
-    }
-}*/
 
 // ckecking if the set date has passed 
 function checkIfDatePassed(timeitem){

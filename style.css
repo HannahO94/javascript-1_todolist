@@ -1,11 +1,138 @@
-    .done {
-        text-decoration: line-through;
-        color: gray;
+.done {
+    text-decoration: line-through;
+    color: gray;
+}
+.giveTime {
+    color: red;
     }
-    .giveTime {
-        color: red;
-      }
-      .timePassed {
-          color: red;
+.timePassed {
+    color: red;
           
-      }
+    }
+html {
+    font-family: "Avenir Next", Helevetica, sans-serif;
+  }
+  
+  body {
+    margin: 0 auto;
+  }
+
+  table {
+    padding: 10px;
+    width: 500px;
+    margin: 0px;
+    border-collapse: collapse; 
+    border-radius: 10px;
+  }
+  form{
+    margin: 30px;
+  }
+  body {
+    background: #9ac6f1;
+    margin-top: 0%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif 
+  }
+  h1 {
+      color: white;
+      background-color: #097df1;
+      padding-left: 10px;
+      margin: 0px;
+      border: 20px solid #097df1;
+ 
+  }
+  .header {
+      border: 5px solid #097df1;
+
+      
+  }
+  #todoinput {
+      border:0px; 
+      border-radius: 5px;
+      width: 200px;
+      height:25px;
+      margin-bottom: 20px;
+      color:#3794f1;
+      border-bottom: 3px solid #82befa;
+      border-left: 3px solid #82befa;
+      border-right: 1px solid #82befa;
+  }
+  #datumet {
+    color: #3794f1;
+    border-radius: 5px;
+  }
+  #category {
+    color: #3794f1;
+    border-radius: 5px;
+  }
+  #addtodobtn {
+    margin:0 0.3em 0.3em 0;
+    border-radius: 5px;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-weight:300;
+    color:#FFFFFF;
+    background-color:#4eb5f1;
+    text-align:center;
+    transition: all 0.2s;
+  }
+  #addtodobtn:hover {
+    color:#4eb5f1;;
+    background-color: #FFFFFF;
+  }
+  .cattd {
+    width: 200px;
+    padding-left: 10px
+  }
+  .item {
+    width: 300px
+  }
+  tr {
+    border-bottom: 5px solid #82befa;
+    border-radius: 20px;
+    
+    background: rgb(188, 210, 228);
+
+    
+  }
+  .timeitem {
+    width: 200px;
+    padding: 15px;
+  }
+  #filter {
+    border:0px; 
+    border-radius: 5px;
+    width: 200px;
+    height:25px;
+    margin-bottom: 20px;
+    color:#298ef3;
+    border-bottom: 3px solid #82befa;
+    border-left: 3px solid #82befa;
+    border-right: 1px solid #82befa;
+   
+}
+
+.remove{
+  margin:5px;
+  background-color: rgb(247, 162, 162);
+  border-radius: 5px;
+  font-size: 17px;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  border-bottom: 2px solid rgb(157, 200, 235); 
+  border-left: 2px solid rgb(157, 200, 235);
+  border-right: 1px solid rgb(157, 200, 235); 
+  border-top: 1px solid rgb(157, 200, 235); 
+  padding: 0px;
+
+}
+.remove:hover {
+  color:#000000;
+  background-color: #FFFFFF;
+}
+
+.buttons {
+  color: rgb(188, 210, 228);
+  font-size: 1px;
+  width: 200px;
+}
